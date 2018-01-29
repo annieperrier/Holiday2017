@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Gingerbread House - 3D A-Frame VR Experience</title>
+
+		<meta name="description" content="Gingerbread House 3D A-Frame VR Experience">
+
+		<!-- manual fix for supporting Galaxy S8 CAD -->
+		<script src="js/aframe.custom.js"></script>
+		<!-- manual fix for the snow environment we want -->
+		<script src="js/aframe-environment-component.custom.js"></script>
+
+		<script src="node_modules/aframe-physics-system/dist/aframe-physics-system.min.js"></script>
+		<script src="node_modules/aframe-animation-component/dist/aframe-animation-component.min.js"></script>
+
+		<!-- custom interactions for this script -->
+		<script src="js/script.js"></script>
+
+		<!--
+			Assets:
+				- snowman: https://poly.google.com/view/e_XAdoIlsEA
+				- candy cane: https://poly.google.com/view/7hFfIF3zYt6
+				- chocolate bar: https://poly.google.com/view/7Y3Rff88kKJ
+				- gummy bear: https://poly.google.com/view/5zl16PPAItW
+				- peppermint candy: https://poly.google.com/view/dTJRMq_RYeQ
+				- lollipop: https://poly.google.com/view/4zZE7UiKdU3
+				- stocking: https://poly.google.com/view/7oh1bgmUY8T
+				- presents: https://poly.google.com/view/8eJfmMDsvso
+				- christmas tree: https://poly.google.com/view/92rOUpLs61i
+				- gingerbread man: https://poly.google.com/view/2MiCVschgHy
+				- gumdrop: https://poly.google.com/view/1FBcmln8Ml5
+				- coughdrop: https://poly.google.com/view/fQpW4RJsm7m
+				- pine trees: https://poly.google.com/view/bpV3f5je3rl
+				- pine cone: https://poly.google.com/view/06dagPn-QYn
+				- log: https://poly.google.com/view/dkRLlPSdgdR
+				- wood stack: https://poly.google.com/view/8K4i-xjd8Ep
+				- fireplace: https://poly.google.com/view/fBHV3AYiitX
+				- fire: https://poly.google.com/view/1QpMTUO7P-G
+				- rug: https://poly.google.com/view/8-vPv5_yqKb
+				- wafer cookie: https://poly.google.com/view/85hTHsxhBbm
+				- wreath: https://poly.google.com/view/ev2SiLR5naW
+				- santa: https://poly.google.com/view/3Q7goR4wcNE
+		-->
+	</head>
+	<body>
+		<a-scene>
+
+			<a-assets>
+				<img id="texture-gingerbread" src="textures/gingerbread-texture.png">
+
+				<a-asset-item id="snowman-obj" src="objects/snowman.obj"></a-asset-item>
+				<a-asset-item id="snowman-mtl" src="objects/snowman.mtl"></a-asset-item>
+				<a-asset-item id="candycane-obj" src="objects/candycane.obj"></a-asset-item>
+				<a-asset-item id="candycane-mtl" src="objects/candycane.mtl"></a-asset-item>
+				<a-asset-item id="chocolatebar-obj" src="objects/chocolatebar.obj"></a-asset-item>
+				<a-asset-item id="chocolatebar-mtl" src="objects/chocolatebar.mtl"></a-asset-item>
+				<a-asset-item id="gummybear-obj" src="objects/gummybear.obj"></a-asset-item>
+				<a-asset-item id="gummybear-mtl" src="objects/gummybear.mtl"></a-asset-item>
+				<a-asset-item id="peppermintcandy-obj" src="objects/peppermintcandy.obj"></a-asset-item>
+				<a-asset-item id="peppermintcandy-mtl" src="objects/peppermintcandy.mtl"></a-asset-item>
+				<a-asset-item id="lollipop-obj" src="objects/lollipop.obj"></a-asset-item>
+				<a-asset-item id="lollipop-mtl" src="objects/lollipop.mtl"></a-asset-item>
+				<a-asset-item id="stocking-obj" src="objects/stocking.obj"></a-asset-item>
+				<a-asset-item id="stocking-mtl" src="objects/stocking.mtl"></a-asset-item>
+				<a-asset-item id="presents-obj" src="objects/presents.obj"></a-asset-item>
+				<a-asset-item id="presents-mtl" src="objects/presents.mtl"></a-asset-item>
+				<a-asset-item id="christmastree-obj" src="objects/christmastree.obj"></a-asset-item>
+				<a-asset-item id="christmastree-mtl" src="objects/christmastree.mtl"></a-asset-item>
+				<a-asset-item id="gingerbreadman-obj" src="objects/gingerbreadman.obj"></a-asset-item>
+				<a-asset-item id="gingerbreadman-mtl" src="objects/gingerbreadman.mtl"></a-asset-item>
+				<a-asset-item id="gumdrop-obj" src="objects/gumdrop.obj"></a-asset-item>
+				<a-asset-item id="gumdrop-mtl" src="objects/gumdrop.mtl"></a-asset-item>
+				<a-asset-item id="coughdrop-obj" src="objects/coughdrop.obj"></a-asset-item>
+				<a-asset-item id="coughdrop-mtl" src="objects/coughdrop.mtl"></a-asset-item>
+				<a-asset-item id="pinetrees-obj" src="objects/pinetrees.obj"></a-asset-item>
+				<a-asset-item id="pinetrees-mtl" src="objects/pinetrees.mtl"></a-asset-item>
+				<a-asset-item id="pinecone-obj" src="objects/pinecone.obj"></a-asset-item>
+				<a-asset-item id="pinecone-mtl" src="objects/pinecone.mtl"></a-asset-item>
+				<a-asset-item id="log-obj" src="objects/log.obj"></a-asset-item>
+				<a-asset-item id="log-mtl" src="objects/log.mtl"></a-asset-item>
+				<a-asset-item id="woodstack-obj" src="objects/woodstack.obj"></a-asset-item>
+				<a-asset-item id="woodstack-mtl" src="objects/woodstack.mtl"></a-asset-item>
+				<a-asset-item id="fireplace-obj" src="objects/fireplace.obj"></a-asset-item>
+				<a-asset-item id="fireplace-mtl" src="objects/fireplace.mtl"></a-asset-item>
+				<a-asset-item id="fire-obj" src="objects/fire.obj"></a-asset-item>
+				<a-asset-item id="fire-mtl" src="objects/fire.mtl"></a-asset-item>
+				<a-asset-item id="rug-obj" src="objects/rug.obj"></a-asset-item>
+				<a-asset-item id="rug-mtl" src="objects/rug.mtl"></a-asset-item>
+				<a-asset-item id="wafercookie-obj" src="objects/wafercookie.obj"></a-asset-item>
+				<a-asset-item id="wafercookie-mtl" src="objects/wafercookie.mtl"></a-asset-item>
+				<a-asset-item id="wreath-obj" src="objects/wreath.obj"></a-asset-item>
+				<a-asset-item id="wreath-mtl" src="objects/wreath.mtl"></a-asset-item>
+				<a-asset-item id="santa-obj" src="objects/santa.obj"></a-asset-item>
+				<a-asset-item id="santa-mtl" src="objects/santa.mtl"></a-asset-item>
+
+				<a-mixin id="pinetrees" scale="0.04 0.04 0.04" obj-model="obj: #pinetrees-obj; mtl: #pinetrees-mtl"></a-mixin>
+				<a-mixin id="wafercookie" scale="0.0000013 0.0000013 0.0000013" obj-model="obj: #wafercookie-obj; mtl: #wafercookie-mtl"></a-mixin>
+
+				<a-mixin id="fencepost" geometry="primitive: cylinder; height: 2.5; radius: 0.1" material="color: #c00"></a-mixin>
+				<a-mixin id="cornerpost" geometry="primitive: cylinder; height: 6.2; radius: 0.2" material="color: #fff"></a-mixin>
+
+				<a-mixin id="gingerbreadsurface" geometry="primitive: box;" material="src: #texture-gingerbread; color: #FFC65D" rotation="0 0 0"></a-mixin>
+				<a-mixin id="gingerbreadwall" geometry="height: 6; width: 0.1; depth: 3"></a-mixin>
+			</a-assets>
+
+
+			<a-entity camera="fov: 90; userHeight: 1.6" position="0 0 0" look-controls wasd-controls>
+				<a-entity
+					collider-check
+					position="0 0 -1"
+					geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+					material="color: darkred; shader: flat"
+					raycaster="objects: .clickable"
+					cursor="maxDistance: 30; fuse: true; fuseTimeout: 2500"
+				>
+					<a-animation begin="click" easing="ease-in" attribute="scale"
+						fill="forwards" from="0.2 0.2 0.2" to="1 1 1" dur="150"></a-animation>
+					<a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+						fill="backwards" from="1 1 1" to="0.2 0.2 0.2" dur="2550"></a-animation>
+				</a-entity>
+			</a-entity>
+
+
+			<a-entity id="environment" environment="preset: snow;"></a-entity>
+
+
+			<a-obj-model id="pinetreesleft" mixin="pinetrees" position="-16 0 -10" rotation="0 0 0"></a-obj-model>
+			<a-obj-model id="pinetreesright" mixin="pinetrees" position="24 0 -8" rotation="0 0 0"></a-obj-model>
+			<a-obj-model id="pinetreesback" mixin="pinetrees" position="0 0 -25" rotation="0 70 0"></a-obj-model>
+			<a-obj-model id="pinetreesfrontleft" mixin="pinetrees" position="15 0 20" rotation="0 -400 0"></a-obj-model>
+			<a-obj-model id="pinetreesfrontright" mixin="pinetrees" position="-15 0 25" rotation="0 70 0"></a-obj-model>
+
+			<a-obj-model id="santa" src="#santa-obj" mtl="#santa-mtl" position="0 2 7" rotation="0 0 0" scale="5 5 5"></a-obj-model>
+
+			<a-obj-model id="snowman" src="#snowman-obj" mtl="#snowman-mtl" position="8 2 -5" rotation="0 30 0" scale="1.75 1.75 1.75"></a-obj-model>
+
+			<a-obj-model id="gingerbreadman"
+				src="#gingerbreadman-obj"
+				mtl="#gingerbreadman-mtl"
+				position="-8 0 -5"
+				rotation="0 40 -4"
+				scale="0.015 0.015 0.015"
+				class="clickable"
+				onetime-click
+				animation="property: rotation;
+						startEvents: click;
+						dir: alternate;
+						dur: 2000;
+						easing: easeOutSine;
+						loop: true;
+						from: 0 40 -4;
+						to: 0 30 4
+				">
+			</a-obj-model>
+
+			<a-obj-model id="coughdrop" src="#coughdrop-obj" mtl="#coughdrop-mtl" position="-2.5 0.2 4" rotation="0 0 0" scale="0.000005 0.000005 0.000005"></a-obj-model>
+
+			<a-entity id="pathfloor">
+				<a-obj-model src="#chocolatebar-obj" mtl="#chocolatebar-mtl" position="0 0 3.95" rotation="0 90 0" scale="1.8 1.8 1.8"></a-obj-model>
+				<a-obj-model src="#chocolatebar-obj" mtl="#chocolatebar-mtl" position="0 0 7.75" rotation="0 90 0" scale="1.8 1.8 1.8"></a-obj-model>
+			</a-entity>
+
+			<a-obj-model src="#lollipop-obj" mtl="#lollipop-mtl" position="-2.5 1.9 9.45" rotation="0 30 0" scale="1.5 1.5 1.5"></a-obj-model>
+			<a-obj-model src="#lollipop-obj" mtl="#lollipop-mtl" position="2.5 1.9 9.45" rotation="0 30 0" scale="1.5 1.5 1.5"></a-obj-model>
+
+			</a-entity>
+
+			<a-entity id="fence">
+				<!-- left front -->
+				<a-entity mixin="fencepost" position="-2 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="-3 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="-4 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="-5 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="-6 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="-7 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="-8 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="-9 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 9.5"></a-entity>
+				<!-- right front -->
+				<a-entity mixin="fencepost" position="2 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="3 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="4 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="5 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="6 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="7 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="8 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="9 0 9.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 9.5"></a-entity>
+				<!-- left side -->
+				<a-entity mixin="fencepost" position="-10 0 8.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 7.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 6.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 5.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 4.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 3.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 2.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 1.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 0.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -0.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -1.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -2.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -3.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -4.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -5.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -6.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -7.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -8.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -9.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -10.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -11.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -12.5"></a-entity>
+				<!-- right side -->
+				<a-entity mixin="fencepost" position="10 0 8.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 7.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 6.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 5.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 4.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 3.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 2.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 1.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 0.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -0.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -1.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -2.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -3.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -4.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -5.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -6.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -7.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -8.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -9.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -10.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -11.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -12.5"></a-entity>
+				<!-- back -->
+				<a-entity mixin="fencepost" position="-1 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="-2 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="-3 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="-4 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="-5 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="-6 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="-7 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="-8 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="-9 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="-10 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="-0 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="1 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="2 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="3 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="4 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="5 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="6 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="7 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="8 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="9 0 -12.5"></a-entity>
+				<a-entity mixin="fencepost" position="10 0 -12.5"></a-entity>
+			</a-entity>
+
+
+			<a-entity id="house" position="0 3.2 0">
+				<a-obj-model id="gumdrop" src="#gumdrop-obj" mtl="#gumdrop-mtl" position="0 2.2 1.6" rotation="-55 -90 -90" scale="0.000002 0.000002 0.000002"></a-obj-model>
+
+				<a-obj-model id="waferrightfront" mixin="wafercookie" position="3.95 1.4 1.6" rotation="15.3 -3.2 -90"></a-obj-model>
+				<a-obj-model id="waferrightback" mixin="wafercookie" position="3.95 1.4 -3.6" rotation="15.3 -3.2 -90"></a-obj-model>
+				<a-obj-model id="waferrightfront" mixin="wafercookie" position="-4.5 1.4 1.6" rotation="15.3 -3.2 -90"></a-obj-model>
+				<a-obj-model id="waferrightback" mixin="wafercookie" position="-4.5 1.4 -3.6" rotation="15.3 -3.2 -90"></a-obj-model>
+
+				<a-entity id="cornerposts">
+					<a-cylinder mixin="cornerpost" position="-4.15 -0.2 2"></a-cylinder>
+					<a-cylinder mixin="cornerpost" position="4.15 -0.2 2"></a-cylinder>
+					<a-cylinder mixin="cornerpost" position="-4.15 -0.2 -8"></a-cylinder>
+					<a-cylinder mixin="cornerpost" position="4.15 -0.2 -8"></a-cylinder>
+				</a-entity>
+
+				<a-obj-model src="#candycane-obj" mtl="#candycane-mtl" position="-1.7 -3.2 2.15" rotation="0 0 0" scale="0.03 0.03 0.03"></a-obj-model>
+				<a-obj-model src="#candycane-obj" mtl="#candycane-mtl" position="1.7 -3.2 2.25" rotation="0 180 0" scale="0.03 0.03 0.03"></a-obj-model>
+
+
+				<a-obj-model src="#gummybear-obj" mtl="#gummybear-mtl" position="-1.9 -2.5 2.3" rotation="0 20 0" scale="0.01 0.01 0.01"></a-obj-model>
+				<a-obj-model src="#gummybear-obj" mtl="#gummybear-mtl" position="1.9 -2.5 2.3" rotation="0 -20 0" scale="0.01 0.01 0.01"></a-obj-model>
+
+
+				<a-obj-model src="#woodstack-obj" mtl="#woodstack-mtl" position="6.6 -3 2.1" rotation="0 -85 0" scale="0.0000045 0.0000045 0.0000045"></a-obj-model>
+				<a-obj-model src="#pinecone-obj" mtl="#pinecone-mtl" position="2.4 -3 1.5" rotation="0 0 0" scale="0.05 0.05 0.05"></a-obj-model>
+
+				<a-obj-model src="#wreath-obj" mtl="#wreath-mtl" position="0 2.3 1.5" rotation="-25 15 0" scale="4 4 4"></a-obj-model>
+
+				<a-obj-model src="#christmastree-obj" mtl="#christmastree-mtl" position="2.3 -0.3 -6.25" rotation="0 0 0" scale="12 15 12"></a-obj-model>
+
+				<a-entity id="table" position="-2.7 -2.3 0.7">
+					<a-obj-model id="tabletop"
+						src="#peppermintcandy-obj"
+						mtl="#peppermintcandy-mtl"
+						position="0 0 0"
+						rotation="0 0 0"
+						scale="0.8 0.4 0.8"
+						class="clickable"
+						onetime-click
+						animation="
+							property: rotation;
+							startEvents: click;
+							dir: normal;
+							dur: 6000;
+							easing: linear;
+							loop: true;
+							from: 0 0 0;
+							to: 0 360 0
+						">
+					</a-obj-model>
+
+					<a-cone color="#fff" position="0 -0.5 0" radius-bottom="0.2" radius-top="0.05" geometry="height: 0.6"></a-cone>
+				</a-entity>
+
+				<a-obj-model id="presents" src="#presents-obj" mtl="#presents-mtl" position="-3 -2.5 -6.8" rotation="0 -70 0" scale="0.8 0.8 0.8"></a-obj-model>
+
+				<a-obj-model id="rug" src="#rug-obj" mtl="#rug-mtl" position="0 -2.9 -2" rotation="0 2 0" scale="0.4 0.4 0.4"></a-obj-model>
+
+				<a-box id="floor" src="#texture-gingerbread" position="0 -3.15 -3" rotation="0 0 0" color="#FFE87F" height="0.3" width="8.1" depth="10.1" shadow></a-box>
+
+				<a-entity id="rightsideright" mixin="gingerbreadsurface gingerbreadwall" position="4 0 0.5"></a-entity>
+				<a-entity id="rightsideleft" mixin="gingerbreadsurface gingerbreadwall" position="4 0 -6.5"></a-entity>
+				<a-box id="rightsidemidbot" position="4 -2.6 -3" rotation="0 0 0" color="#a00" height="0.8" width="0.1" depth="4" shadow></a-box>
+				<a-box id="rightsidemidtop" src="#texture-gingerbread" position="4 2.25 -3" rotation="0 0 0" color="#592c16" height="1.5" width="0.1" depth="4" shadow></a-box>
+
+				<a-entity id="leftsideright" mixin="gingerbreadsurface gingerbreadwall" position="-4 0 0.5"></a-entity>
+				<a-entity id="leftsideleft" mixin="gingerbreadsurface gingerbreadwall" position="-4 0 -6.5"></a-entity>
+				<a-box id="leftsidemidbot" position="-4 -2.6 -3" rotation="0 0 0" color="#a00" height="0.8" width="0.1" depth="4" shadow></a-box>
+				<a-box id="leftsidemidtop" src="#texture-gingerbread" position="-4 2.25 -3" rotation="0 0 0" color="#592c16" height="1.5" width="0.1" depth="4" shadow></a-box>
+
+				<a-entity id="frontleft" mixin="gingerbreadsurface gingerbreadwall" position="-2.5 0 2" rotation="0 90 0"></a-entity>
+				<a-entity id="frontright" mixin="gingerbreadsurface gingerbreadwall" position="2.5 0 2" rotation="0 90 0"></a-entity>
+				<a-entity id="fronttop" mixin="gingerbreadsurface gingerbreadwall" position="0 2 2" rotation="0 90 0" geometry="height:2; depth:2"></a-entity>
+
+				<a-box id="backleft" src="#texture-gingerbread" position="-2.75 0 -8" rotation="0 0 0" color="#FFC65D" height="6" width="2.6" depth="0.1" shadow></a-box>
+				<a-box id="backright" src="#texture-gingerbread" position="2.75 0 -8" rotation="0 0 0" color="#FFC65D" height="6" width="2.6" depth="0.1" shadow></a-box>
+				<a-box id="backtop" src="#texture-gingerbread" position="0 1 -8" rotation="0 0 0" color="#FFC65D" height="4" width="3" depth="0.1" shadow></a-box>
+
+				<a-triangle id="rooffront" position="0 3 2.0" geometry="vertexA: 0 2 0; vertexB: -4 0 0; vertexC: 4 0 0" side="double" rotation="0 0 0" color="#fff"></a-triangle>
+				<a-triangle id="roofback" position="0 3 -7.99" geometry="vertexA: 0 2 0; vertexB: -4 0 0; vertexC: 4 0 0" side="double" rotation="0 0 0" color="#fff"></a-triangle>
+
+				<a-entity id="roof" position="0 3.6 -3.25">
+					<a-box id="roofleft" position="-2.635 0 0" rotation="-25 90 0" color="#ddd" height="0.4" width="11.5" depth="6" shadow></a-box>
+					<a-box id="roofleft" position="2.635 0 0" rotation="25 90 0" color="#ddd" height="0.4" width="11.5" depth="6" shadow></a-box>
+				</a-entity>
+
+				<a-entity id="stockings" position="0 -1 -7.12">
+					<a-entity id="stockingcontainerleft"
+						rotation="-5 90 0"
+						position="-1.2 4 0"
+						class="clickable"
+						onetime-click
+						animation="
+							property: rotation;
+							startEvents: click;
+							dir: alternate;
+							dur: 1100;
+							easing: easeOutSine;
+							loop: true;
+							from: -5 90 0;
+							to: -6 90 0
+						">
+						<a-obj-model src="#stocking-obj" mtl="#stocking-mtl" position="0 -4 0" scale="0.8 0.8 0.8"></a-obj-model>
+					</a-entity>
+					<a-entity id="stockingcontainermid"
+						rotation="-8 90 0"
+						position="-0.4 4 0"
+						class="clickable"
+						onetime-click
+						animation="
+							property: rotation;
+							startEvents: click;
+							dir: alternate;
+							dur: 900;
+							easing: easeOutSine;
+							loop: true;
+							from: -8 90 0;
+							to: -9 90 0
+						">
+						<a-obj-model src="#stocking-obj" mtl="#stocking-mtl" position="0 -4 0" scale="0.8 0.8 0.8"></a-obj-model>
+					</a-entity>
+					<a-entity id="stockingcontainerright"
+						rotation="-2 90 0"
+						position="0.8 4 0"
+						class="clickable"
+						onetime-click
+						animation="
+							property: rotation;
+							startEvents: click;
+							dir: alternate;
+							dur: 1000;
+							easing: easeOutSine;
+							loop: true;
+							from: -2 90 0;
+							to: -3 90 0
+						">
+						<a-obj-model src="#stocking-obj" mtl="#stocking-mtl" position="0 -4 0" scale="0.8 0.8 0.8"></a-obj-model>
+					</a-entity>
+				</a-entity>
+
+				<a-entity id="fireplace" position="0 -3 -7.8">
+					<a-obj-model src="#fireplace-obj" mtl="#fireplace-mtl" position="0 0 0" rotation="0 -90 0" scale="1 1 1"></a-obj-model>
+					<a-obj-model src="#log-obj" mtl="#log-mtl" position="0 0.3 0.3" rotation="20 20 0" scale="0.4 0.4 0.4"></a-obj-model>
+					<a-obj-model src="#fire-obj" mtl="#fire-mtl" position="0 0.6 0.4" rotation="0 0 0" scale="2 2 2"></a-obj-model>
+				</a-entity>
+
+				<a-entity id="chimney" position="0 0 -7.9">
+					<a-box id="chimneybottom" position="0 -3 -0.275" rotation="0 0 0" color="#333" height="0.1" width="3.6" depth="2.45"></a-box>
+
+					<a-box id="chimneybacktop" position="0 3 -1.45" rotation="0 0 0" color="#250a00" height="6" width="1.5" depth="0.1"></a-box>
+					<a-box id="chimneylefttop" position="-0.75 3 -0.75" rotation="0 0 0" color="#250a00" height="6" width="0.1" depth="1.5"></a-box>
+					<a-box id="chimneyrighttop" position="0.75 3 -0.75" rotation="0 0 0" color="#250a00" height="6" width="0.1" depth="1.5"></a-box>
+					<a-box id="chimneyfronttop" position="0 3 -0.05" rotation="0 0 0" color="#250a00" height="6" width="1.5" depth="0.1"></a-box>
+
+					<a-box id="chimneybackbottom" position="0 -1.5 -1.45" rotation="0 0 0" color="#250a00" height="3" width="3.5" depth="0.1"></a-box>
+					<a-box id="chimneybacktop" position="-1.75 -1.5 -0.75" rotation="0 0 0" color="#250a00" height="3" width="0.1" depth="1.5"></a-box>
+					<a-box id="chimneybacktop" position="1.75 -1.5 -0.75" rotation="0 0 0" color="#250a00" height="3" width="0.1" depth="1.5"></a-box>
+
+					<a-box id="chimneyleftslope" position="-0.89 0.6 -0.75" rotation="0 0 -31" color="#250a00" height="2" width="1" depth="1.5"></a-box>
+					<a-box id="chimneyrightslope" position="0.89 0.6 -0.75" rotation="0 0 31" color="#250a00" height="2" width="1" depth="1.5"></a-box>
+				</a-entity>
+			</a-entity>
+
+
+		</a-scene>
+	</body>
+</html>

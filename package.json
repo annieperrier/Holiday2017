@@ -1,0 +1,21 @@
+{
+  "name": "gingerbread",
+  "version": "1.0.0",
+  "description": "Gingerbread House 3D A-Frame VR Experience",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node_modules/live-server/live-server.js"
+  },
+  "author": "Annie Perrier",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "1.2.0"
+  },
+  "dependencies": {
+    "aframe": "0.7.1",
+    "aframe-animation-component": "4.0.0-beta9",
+    "aframe-environment-component": "1.0.0",
+    "aframe-physics-system": "2.1.0"
+  }
+}
